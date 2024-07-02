@@ -27,7 +27,7 @@ trabajanEnElMismoDepartamento(Miembro1,Miembro2):-
 % Decimos que a puede darle órdenes a b si y sólo si trabajan en el mismo departamento y a tiene 
 % un cargo superior al de b. Se considera que “empleado” es un cargo superior a “cadete” y a “pasante”.
 puedeDarleOrdenesA(Miembro1,Miembro2):-
-    forall(trabajaEnElDepartamento(Miembro1,Miembro2),
+    forall(trabajanEnElMismoDepartamento(Miembro1,Miembro2),
     esUnSuperiorDelDepartamento(Miembro1)).
 
 esUnSuperiorDelDepartamento(Trabajador):-
