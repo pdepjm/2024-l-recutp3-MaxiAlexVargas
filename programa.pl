@@ -1,7 +1,7 @@
 % VOMISTAR
 miembroDelDepartamento(ventas,empleada,maria).
 miembroDelDepartamento(ventas,cadete,juan).
-miembroDelDepartamento(ventas,pasante,maria).
+miembroDelDepartamento(ventas,pasante,roque).
 
 miembroDelDepartamento(compras,empleada,nora).
 miembroDelDepartamento(compras,cadete,pedro).
@@ -27,8 +27,13 @@ trabajanEnElMismoDepartamento(Miembro1,Miembro2):-
 % Decimos que a puede darle órdenes a b si y sólo si trabajan en el mismo departamento y a tiene 
 % un cargo superior al de b. Se considera que “empleado” es un cargo superior a “cadete” y a “pasante”.
 puedeDarleOrdenesA(Miembro1,Miembro2):-
-    forall(trabajanEnElMismoDepartamento(Miembro1,Miembro2),
-    esUnSuperiorDelDepartamento(Miembro1)).
+    trabajanEnElMismoDepartamento(Miembro1,Miembro2),
+    esSuSuperior(Miembro1,Miembro2).
 
-esUnSuperiorDelDepartamento(Trabajador):-
-    miembroDelDepartamento(_,empleada,Trabajador).
+esSuSuperior(Trabajador1,Trabajador2):-
+    miembroDelDepartamento(_,empleada,Trabajador1),
+    miembroDelDepartamento(_,cadete,Trabajador2).
+
+esSuSuperior(Trabajador1,Trabajador2):-
+    miembroDelDepartamento(_,empleada,Trabajador1),
+    miembroDelDepartamento(_,pasante,Trabajador2).
